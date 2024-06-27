@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Char Creation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="form-tabs.css">
+</head>
+<body>
+    <h1>Char.</h1>
+    <h3>Forge your hero</h3>
+    <div class="col-box">
+        <!--Character creation is one big form, split into manageable pages: options, name, race, class, and skills. 
+        TODO: Inventory and character traits come later-->
+        <form id="character-creator" target="_blank" action="character-sheet.html" method="POST">
+            <h1>New Hero</h1>
+
+            <!--TODO add options for multiple sources and homebrews-->
+            <div class="tab">
+                <h2>Options:</h2>
+                <p>In 0.1, only PHB options are included</p>
+            </div>
+
+            <!--Name input-->
+            <div class="tab">
+                <h2>Name:</h2>
+                <div>
+                    <label for="name-input">Your hero's name:</label>
+                    <input placeholder="Name..." oninput="this.className = ''">
+                </div>
+                
+                <p>None in mind? Check out <a href = "fantasynamegenerators.com">Fantasy Name Generators</a></p>
+            </div>
+
+            <!--Racial background selection-->
+            <div class="tab">
+                <h2>Race:</h2>
+                
+                <div>
+                    <label for="races">Choose a race:</label>
+                    <select name="races" id="races">
+                        <option value="dragonborn">   Dragonborn</option>
+                        <option value="dwarf">        Dwarf</option>
+                        <option value="elf">          Elf</option>
+                        <option value="gnome">        Gnome</option>
+                        <option value="half-elf">     Half-Elf</option>
+                        <option value="halfling">     Halfling</option>
+                        <option value="half-orc">     Half-Orc</option>
+                        <option value="human">        Human</option>
+                        <option value="tiefling">     Tiefling</option>
+                    </select> 
+                </div>
+                
+                <!--TODO - nested list selection of some kind-->
+                <div>
+                    <label for="subraces">Choose a race variant:</label>
+                    <select name="subraces" id="subraces">
+                        <option value="test">    test</option>
+                    </select>
+                </div>
+            </div>
+
+            <!--Class & subclass selection-->
+            <div class="tab">
+                <h2>Class and Levels:</h2>
+                <div>
+                    <label for="classes">Choose a class:</label>
+                    <select name="classes" id="classes">
+                        <option value="barbarian">  Barbarian</option>
+                        <option value="bard">       Bard</option>
+                        <option value="cleric">     Cleric</option>
+                        <option value="druid">      Druid</option>
+                        <option value="fighter">    Fighter</option>
+                        <option value="monk">       Monk</option>
+                        <option value="paladin">    Paladin</option>
+                        <option value="ranger">     Ranger</option>
+                        <option value="rogue">      Rogue</option>
+                        <option value="sorcerer">   Sorcerer</option>
+                        <option value="warlock">    Warlock</option>
+                        <option value="wizard">     Wizard</option>
+                    </select>
+                </div>
+                
+                <!--Level select-->
+                <div>
+                    <label for="level-primary-class">Class level:</label>
+                    <select name="level" id="level">
+                        <option value="1">   1</option>
+                        <option value="2">   2</option>
+                        <option value="3">   3</option>
+                        <option value="4">   4</option>
+                        <option value="5">   5</option>
+                        <option value="6">   6</option>
+                        <option value="7">   7</option>
+                        <option value="8">   8</option>
+                        <option value="9">   9</option>
+                        <option value="10">   10</option>
+                        <option value="11">   11</option>
+                        <option value="12">   12</option>
+                        <option value="13">   13</option>
+                        <option value="14">   14</option>
+                        <option value="15">   15</option>
+                        <option value="16">   16</option>
+                        <option value="17">   17</option>
+                        <option value="18">   18</option>
+                        <option value="19">   19</option>
+                        <option value="20">   20</option>
+                    </select>
+                </div>
+
+                <p>Note: in build 0.1, there is no multiclassing</p>
+                <!--multiclassing - JS to make displaying the class selector a repeatable process?-->
+            </div>
+
+            <div class="tab">
+                <h2>Skills:</h2>
+                
+                <h3>Core stats:</h3>
+                <p>stat selection is going to go here</p>
+                <p>Note: in build 0.1, there is only standard array stats</p>
+                <p>TODO: exclusive list selection</p>
+            </div>
+
+            <!--Let the user navigate between these pages-->
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-box" style="margin-top: 50px">
+        <p>Char is currently in pre-alpha build 0.1. Expect missing content, clunky UI, and broken features.</p>
+    </div>
+
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+
+        function showTab(n) {
+            // This function will display the specified tab of the form ...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            // ... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Finish";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            // ... and run a function that displays the correct step indicator:
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form... :
+            if (currentTab >= x.length) {
+                //...the form gets submitted:
+                document.getElementById("regForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            // This function deals with validation of the form fields
+            // This needs a refactor, it assumes all user fields are input fields
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false:
+                valid = false;
+                }
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid; // return the valid status
+        }
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            //... and adds the "active" class to the current step:
+            x[n].className += " active";
+        }
+    </script>
+</body>
+</html>

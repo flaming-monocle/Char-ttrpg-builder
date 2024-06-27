@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(#410D11); 
+}
+.col-box {
+    width: auto;
+    height: auto;
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 0px;
+
+    background-color: grey;
+    border: 2px solid white;
+}
+.big-button {
+    font-weight: bold;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0px;
+    background-color: black;
+    border: 5px solid orange;
+    border-radius: 10px;
+}

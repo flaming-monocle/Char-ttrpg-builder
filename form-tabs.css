@@ -1,0 +1,27 @@
+.tab { /* Sets each tab in a multi-tab form to default invisible */
+    display: none;
+}
+
+.step { /* Sets up the form progress indication bubbles */
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .step.active { /* Marks the step in a form that's active */
+    opacity: 1;
+}
+
+.step.finish { /* Marks the steps in a form that are finished and validated */
+    background-color: #04AA6D;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+    background-color: #ffdddd;
+  }
