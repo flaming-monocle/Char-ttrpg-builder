@@ -1,14 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Sheet</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Sheet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="character-sheet.css">
 </head>
+
 <body>
-    <h1>Char.</h1>
-    <div>Areas of focus for the character sheet</div>
-    <div>Character sheet details for the focused area</div>
+  <h1>Char.</h1>
+  <div class="sheet-nav" style="height: 160px;">
+    <div class="flex-row" style="margin: 5px;">
+      <img class="portrait" src="portrait-example.jpg" alt="a portrait of a heavily armored cartoon warrior">
+      <div class="flex-col character-glance">
+        <div class="flex-row" style="height: 20px; justify-content: center;">
+          <p style="margin-right: 10px;">Arlet</p>
+          <p><i>Lore Bard 6</i></p>
+        </div>
+        <div class="stats-rows">
+          <div class="flex-row stats-row">
+            <!--These are hardcoded for now, to be replaced with character sheet data later-->
+            <div class="quick-stats">
+              <p class="stat-name">STR</p>
+              <p class="stat-score">15</p>
+            </div>
+            <div class="quick-stats">
+              <p class="stat-name">DEX</p>
+              <p class="stat-score">14</p>
+            </div>
+            <div class="quick-stats">
+              <p class="stat-name">CON</p>
+              <p class="stat-score">13</p>
+            </div>
+          </div>
+          <div class="flex-row stats-row">
+            <div class="quick-stats">
+              <p class="stat-name">WIS</p>
+              <p class="stat-score">12</p>
+            </div>
+            <div class="quick-stats">
+              <p class="stat-name">INT</p>
+              <p class="stat-score">11</p>
+            </div>
+            <div class="quick-stats">
+              <p class="stat-name">CHA</p>
+              <p class="stat-score">10</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-nav-buttons">
+      <button class="sheet-nav-button" onclick="showTab(0)">Abilities</button>
+      <button class="sheet-nav-button" onclick="showTab(1)">Actions</button>
+      <button class="sheet-nav-button" onclick="showTab(2)">Features</button>
+      <button class="sheet-nav-button" onclick="showTab(3)">Inventory</button>
+      <button class="sheet-nav-button" onclick="showTab(4)">Character</button>
+    </div>
+  </div>
+  
+  <div class="divider"></div>
+  
+  <!--Abilities, skills, and modifiers-->
+  <section class="tab">
+    <div class="tab-container-row no-margin">
+      <!--List out skills, modifiers, and give the option to roll-->
+      <div class="tab-container-col">
+        <h2 class="no-margin-top">Skills</h2>
+        <!--<button class="ability-name">Strength</button>-->
+        <div class="skill-row">
+          <button class="skill-name">Athletics</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <!--<button class="ability-name">Dexterity</button>-->
+        <div class="skill-row">
+          <button class="skill-name">Acrobatics</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Sleight of Hand</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Stealth</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>      
+        <!--<button class="ability-name">Intelligence</button>-->
+        <div class="skill-row">
+          <button class="skill-name">Arcana</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">History</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Investigation</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Nature</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Religion</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <!--<button class="ability-name">Wisdom</button>-->
+        <div class="skill-row">
+          <button class="skill-name">Animal Handling</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Insight</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Medicine</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Perception</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Survival</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <!--<button class="ability-name">Charisma</button>-->
+        <div class="skill-row">
+          <button class="skill-name">Deception</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Intimidation</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Performance</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+        <div class="skill-row">
+          <button class="skill-name">Persuasion</button>
+          <div class="divider-vertical"></div>
+          <p>+3</p>
+          <!--proficiency/expertise indicator-->
+        </div>
+      </div>
+
+      <!--display passive scores-->
+      <div class="tab-container-col">
+        <h2 class="no-margin-top">Passives</h2>
+        <div class="skill-row">
+          <p class="skill-name">Perception</p>
+          <div class="divider-vertical"></div>
+          <p>14</p>
+        </div>
+        <div class="skill-row">
+          <p class="skill-name">Investigation</p>
+          <div class="divider-vertical"></div>
+          <p>18</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Actions, bonus actions, and movement-->
+  <section class="tab">
+    <div class="tab-container-row">
+      <div class="tab-container-col quarter-split">
+        <h2 class="no-margin-top">Actions</h2>
+      </div>
+      <div class="tab-container-col quarter-split">
+        <h2 class="no-margin-top">Bonus Actions</h2>
+      </div>
+      <div class="tab-container-col quarter-split">
+        <div class="tab-container-col no-margin">
+          <h2 class="no-margin-top">Reactions</h2>
+        </div>
+        <div class="tab-container-col no-margin">
+          <h2 class="">Free Actions</h2>
+        </div>
+      </div>
+      <div class="tab-container-col quarter-split">
+        <h2 class="no-margin-top">Movement</h2>
+      </div>
+    </div>
+  </section>
+
+  <!--Features, traits, and non-action abilities-->
+  <section class="tab">
+    <div class="tab-container-row">
+      <div class="tab-container-col third-split">
+        <div class="tab-container-col">
+          <h2 class="no-margin-top">Class Features</h2>
+        </div>
+      </div><div class="tab-container-col third-split">
+        <div class="tab-container-col">
+          <h2 class="no-margin-top">Race Features</h2>
+        </div>
+      </div>
+      <div class="tab-container-col third-split">
+        <div class="tab-container-col">
+          <h2 class="no-margin-top">Feats</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Inventory and currencies-->
+  <section class="tab inventory">
+    <div class="tab-container-col">
+      <div class="tab-container-row">
+        <h2 class="no-margin-top">Currency</h2>
+      </div>
+    </div>
+    <div class="tab-container-col">
+      <div class="tab-container-row">
+        <h2 class="no-margin-top">Inventory</h2>
+      </div>
+    </div>
+  </section>
+
+  <!--Description and journal-->
+  <section class="tab character">
+    <h2>Character</h2>
+  </section>
 </body>
+<script>
+  var currentTab = 0;
+  showTab(currentTab);
+
+  function showTab(n) {
+    // This function will display the specified tab of the form ...
+    var x = document.getElementsByClassName("tab");
+    for (let i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    x[n].style.display = "block";
+  }
+</script>
+
 </html>
+
+<!--
+TODO
+
+IDEAS
+allow the user to select which tab opens by default
+-->

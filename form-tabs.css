@@ -13,7 +13,7 @@
     opacity: 0.5;
   }
 
-  .step.active { /* Marks the step in a form that's active */
+.step.active { /* Marks the step in a form that's active */
     opacity: 1;
 }
 

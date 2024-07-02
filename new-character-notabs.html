@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Char Creation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="form-tabs.css">
+</head>
+<body>
+    <h1>Char.</h1>
+    <h3>Forge your hero</h3>
+    <div class="col-box">
+        <!--Character creation is one big form, split into manageable pages: options, name, race, class, and skills. 
+        TODO: Inventory and character traits come later-->
+        <form id="character-creator" target="_blank" action="character-sheet.html" method="POST">
+            <h1>New Hero</h1>
+
+            <!--TODO add options for multiple sources and homebrews-->
+            <h2>Options:</h2>
+            <p>In 0.1, only PHB options are included</p>
+
+            <!--Name input-->
+            <h2>Name:</h2>
+            <div>
+                <label for="name-input">Your hero's name:</label>
+                <input placeholder="Name..." oninput="this.className = ''">
+            </div>
+            
+            <p>None in mind? Check out <a href = "fantasynamegenerators.com">Fantasy Name Generators</a></p>
+
+            <!--Racial background selection-->
+            <h2>Race:</h2>
+            <label for="race">Choose a race: </label>
+            <select name="race" id="race">
+                <option value="" selected="selected">Select race</option>
+            </select> 
+            <br><br>
+            <label for="subrace">Choose a subrace: </label>
+            <select name="subrace" id="subrace">
+                <option value="" selected="selected">Select a race first</option>
+            </select>
+
+            <!--Class and level selection-->
+            <h2>Class and Levels:</h2>
+            <div id="class-select">
+                <label for="class">Choose a class:</label>
+                <select name="class" id="class">
+                    <option value="" selected="selected">Select a class</option>
+                </select>
+            </div>
+            <div id="subclass-select">
+                <label for="subclass">Choose a subclass:</label>
+                <select name="subclass" id="subclass">
+                    <option value="" selected="selected">Select a class first</option>
+                </select>
+            </div>
+            
+            <!--Level select-->
+            <div>
+                <label for="level">Class level:</label>
+                <select name="level" id="level">
+                    <option value="1">   1</option>
+                    <option value="2">   2</option>
+                    <option value="3">   3</option>
+                    <option value="4">   4</option>
+                    <option value="5">   5</option>
+                    <option value="6">   6</option>
+                    <option value="7">   7</option>
+                    <option value="8">   8</option>
+                    <option value="9">   9</option>
+                    <option value="10">  10</option>
+                    <option value="11">  11</option>
+                    <option value="12">  12</option>
+                    <option value="13">  13</option>
+                    <option value="14">  14</option>
+                    <option value="15">  15</option>
+                    <option value="16">  16</option>
+                    <option value="17">  17</option>
+                    <option value="18">  18</option>
+                    <option value="19">  19</option>
+                    <option value="20">  20</option>
+                </select>
+            </div>
+
+            <p>Note: in build 0.1, there is no multiclassing</p>
+            <!--multiclassing - JS to make displaying the class selector a repeatable process?-->
+
+            <h2>Skills:</h2>
+            
+            <h3>Core stats:</h3>
+            <p>stat selection is going to go here</p>
+            <p>Note: in build 0.1, there is only standard array stats</p>
+            <p>TODO: exclusive list selection</p>
+        </form>
+    </div>
+
+    <div class="col-box" style="margin-top: 50px">
+        <p>Char is currently in pre-alpha build 0.1. Expect missing content, clunky UI, and broken features.</p>
+    </div>
+
+    <script>
+        // dropdown menu data for race and class
+        const raceData = [
+            {race: "Dragonborn", subraces: ["Black", "Blue", "Green", "Red", "White"]},
+            {race: "Dwarf", subraces: ["Hill", "Mountain"]},
+            {race: "Elf", subraces: ["High", "Wood", "Drow"]},
+            {race: "Gnome", subraces: ["Forest", "Rock"]},
+            {race: "Half-Elf", subraces: ["none"]},
+            {race: "Halfling", subraces: ["Lightfoot", "Stout"]},
+            {race: "Half-Orc", subraces: ["none"]},
+            {race: "Human", subraces: ["Generic", "Variant"]},
+            {race: "Tiefling", subraces: ["none"]},
+        ]
+        const classData = [
+            {class: "Barbarian", subclasses: ["Berserker", "Totem Warrior"]},
+            {class: "Bard", subclasses: ["Lore", "Valor"]},
+            {class: "Cleric", subclasses: ["knowledge", "Light", "Life", "Nature", "War"]},
+            {class: "Druid", subclasses: ["Land", "Moon"]},
+            {class: "Fighter", subclasses: ["Battlemaster", "Champion", "Eldritch Knight"]},
+            {class: "Monk", subclasses: ["Shadow", "Four Elements", "Open Hand"]},
+            {class: "Paladin", subclasses: ["Devotion", "Ancients", "Vengeance"]},
+            {class: "Ranger", subclasses: ["Beastmaster", "Hunter"]},
+            {class: "Rogue", subclasses: ["Thief", "Assassin", "Arcane Trickster"]},
+            {class: "Sorcerer", subclasses: ["Draconic Bloodline", "Wild Magic"]},
+            {class: "Warlock", subclasses: ["Archfey", "Fiend", "Great Old One"]},
+            {class: "Wizard", subclasses: ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evokation", "Illusion", "Necromancy", "Transmutation"]}
+        ]
+
+        // dropdown menu control for race & subrace
+        window.onload = function () {
+            var raceSel = document.getElementById("race");
+            var subraceSel = document.getElementById("subrace");
+      
+            for (var x in raceData) {
+                raceSel.options[raceSel.options.length] = new Option(raceData[x].race, x);
+            }
+
+            raceSel.onchange = function() {
+                //empty subrace selection dropdown
+                subraceSel.length = 1;
+                //display correct values
+                for (var y of raceData[this.value].subraces) {
+                    subraceSel.options[subraceSel.options.length] = new Option(y, y);
+                }
+            }
+
+            // dropdown menu control for class & subclass
+
+            var classSel = document.getElementById("class");
+            var subclassSel = document.getElementById("subclass");
+      
+            for (var x in classData) {
+                classSel.options[classSel.options.length] = new Option(classData[x].class, x);
+            }
+
+            classSel.onchange = function() {
+                //empty subclass selection dropdown
+                subclassSel.length = 1;
+                //display correct values
+                for (var y of classData[this.value].subclasses) {
+                    subclassSel.options[subclassSel.options.length] = new Option(y, y);
+                }
+            }
+        }
+      </script>
+</body>
+</html>

@@ -36,76 +36,56 @@
             <!--Racial background selection-->
             <div class="tab">
                 <h2>Race:</h2>
-                
-                <div>
-                    <label for="races">Choose a race:</label>
-                    <select name="races" id="races">
-                        <option value="dragonborn">   Dragonborn</option>
-                        <option value="dwarf">        Dwarf</option>
-                        <option value="elf">          Elf</option>
-                        <option value="gnome">        Gnome</option>
-                        <option value="half-elf">     Half-Elf</option>
-                        <option value="halfling">     Halfling</option>
-                        <option value="half-orc">     Half-Orc</option>
-                        <option value="human">        Human</option>
-                        <option value="tiefling">     Tiefling</option>
-                    </select> 
-                </div>
-                
-                <!--TODO - nested list selection of some kind-->
-                <div>
-                    <label for="subraces">Choose a race variant:</label>
-                    <select name="subraces" id="subraces">
-                        <option value="test">    test</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--Class & subclass selection-->
+                <label for="race">Choose a race: </label>
+                <select name="race" id="race">
+                    <option value="" selected="selected">Select race</option>
+                </select> 
+                <br><br>
+                <label for="subrace">Choose a subrace: </label>
+                <select name="subrace" id="subrace">
+                    <option value="" selected="selected">Select a race first</option>
+                </select>
+            </div>  
+            
             <div class="tab">
                 <h2>Class and Levels:</h2>
-                <div>
-                    <label for="classes">Choose a class:</label>
-                    <select name="classes" id="classes">
-                        <option value="barbarian">  Barbarian</option>
-                        <option value="bard">       Bard</option>
-                        <option value="cleric">     Cleric</option>
-                        <option value="druid">      Druid</option>
-                        <option value="fighter">    Fighter</option>
-                        <option value="monk">       Monk</option>
-                        <option value="paladin">    Paladin</option>
-                        <option value="ranger">     Ranger</option>
-                        <option value="rogue">      Rogue</option>
-                        <option value="sorcerer">   Sorcerer</option>
-                        <option value="warlock">    Warlock</option>
-                        <option value="wizard">     Wizard</option>
+                <div id="class-select">
+                    <label for="class">Choose a class:</label>
+                    <select name="class" id="class">
+                        <option value="" selected="selected">Select a class</option>
+                    </select>
+                </div>
+                <div id="subclass-select">
+                    <label for="subclass">Choose a subclass:</label>
+                    <select name="subclass" id="subclass">
+                        <option value="" selected="selected">Select a class first</option>
                     </select>
                 </div>
                 
                 <!--Level select-->
                 <div>
-                    <label for="level-primary-class">Class level:</label>
+                    <label for="level">Class level:</label>
                     <select name="level" id="level">
-                        <option value="1">   1</option>
-                        <option value="2">   2</option>
-                        <option value="3">   3</option>
-                        <option value="4">   4</option>
-                        <option value="5">   5</option>
-                        <option value="6">   6</option>
-                        <option value="7">   7</option>
-                        <option value="8">   8</option>
-                        <option value="9">   9</option>
-                        <option value="10">   10</option>
-                        <option value="11">   11</option>
-                        <option value="12">   12</option>
-                        <option value="13">   13</option>
-                        <option value="14">   14</option>
-                        <option value="15">   15</option>
-                        <option value="16">   16</option>
-                        <option value="17">   17</option>
-                        <option value="18">   18</option>
-                        <option value="19">   19</option>
-                        <option value="20">   20</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
                     </select>
                 </div>
 
@@ -219,6 +199,73 @@
             //... and adds the "active" class to the current step:
             x[n].className += " active";
         }
-    </script>
+
+/**/
+
+        // dropdown menu data for race and class
+        const raceData = [
+            {race: "Dragonborn", subraces: ["Black", "Blue", "Green", "Red", "White"]},
+            {race: "Dwarf", subraces: ["Hill", "Mountain"]},
+            {race: "Elf", subraces: ["High", "Wood", "Drow"]},
+            {race: "Gnome", subraces: ["Forest", "Rock"]},
+            {race: "Half-Elf", subraces: ["none"]},
+            {race: "Halfling", subraces: ["Lightfoot", "Stout"]},
+            {race: "Half-Orc", subraces: ["none"]},
+            {race: "Human", subraces: ["Generic", "Variant"]},
+            {race: "Tiefling", subraces: ["none"]},
+        ]
+        const classData = [
+            {class: "Barbarian", subclasses: ["Berserker", "Totem Warrior"]},
+            {class: "Bard", subclasses: ["Lore", "Valor"]},
+            {class: "Cleric", subclasses: ["knowledge", "Light", "Life", "Nature", "War"]},
+            {class: "Druid", subclasses: ["Land", "Moon"]},
+            {class: "Fighter", subclasses: ["Battlemaster", "Champion", "Eldritch Knight"]},
+            {class: "Monk", subclasses: ["Shadow", "Four Elements", "Open Hand"]},
+            {class: "Paladin", subclasses: ["Devotion", "Ancients", "Vengeance"]},
+            {class: "Ranger", subclasses: ["Beastmaster", "Hunter"]},
+            {class: "Rogue", subclasses: ["Thief", "Assassin", "Arcane Trickster"]},
+            {class: "Sorcerer", subclasses: ["Draconic Bloodline", "Wild Magic"]},
+            {class: "Warlock", subclasses: ["Archfey", "Fiend", "Great Old One"]},
+            {class: "Wizard", subclasses: ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evokation", "Illusion", "Necromancy", "Transmutation"]}
+        ]
+
+        // dropdown menu control for race & subrace
+        window.onload = function () {
+            var raceSel = document.getElementById("race");
+            var subraceSel = document.getElementById("subrace");
+      
+            for (var x in raceData) {
+                raceSel.options[raceSel.options.length] = new Option(raceData[x].race, x);
+            }
+
+            raceSel.onchange = function() {
+                //empty subrace selection dropdown
+                subraceSel.length = 0;
+                subraceSel.append = "Select a subrace:";
+                //display correct values
+                for (var y of raceData[this.value].subraces) {
+                    subraceSel.options[subraceSel.options.length] = new Option(y, y);
+                }
+            }
+
+            // dropdown menu control for class & subclass
+
+            var classSel = document.getElementById("class");
+            var subclassSel = document.getElementById("subclass");
+      
+            for (var x in classData) {
+                classSel.options[classSel.options.length] = new Option(classData[x].class, x);
+            }
+
+            classSel.onchange = function() {
+                //empty subclass selection dropdown
+                subclassSel.length = 1;
+                //display correct values
+                for (var y of classData[this.value].subclasses) {
+                    subclassSel.options[subclassSel.options.length] = new Option(y, y);
+                }
+            }
+        }
+      </script>
 </body>
 </html>
